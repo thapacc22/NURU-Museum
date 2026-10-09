@@ -1,0 +1,303 @@
+:root {
+    /* Color Palette */
+    --gr-void: #0B0B0F;
+    --gr-graphite: #17171F;
+    --gr-grid: #2C2C3A;
+    --gr-fog: #8A8A9E;
+    --gr-paper: #F2EDE3;
+    
+    /* Brand Colors */
+    --gr-lime: #D7FF3A;
+    --gr-ember: #FF5A1F;
+    --gr-violet: #8C6BFF;
+    --gr-cyan: #2EE6FF;
+    --gr-green: #34E89E;
+
+    /* Theme - Light Mode (Tech Bright) */
+    --bg-color: var(--gr-paper);
+    --text-main: var(--gr-void);
+    --text-muted: #55556A;
+    --card-bg: #FFFFFF;
+    --grid-line: rgba(44, 44, 58, 0.1);
+    
+    /* Gradients */
+    --time-warp: linear-gradient(135deg, var(--gr-ember), var(--gr-violet));
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'IBM Plex Sans Thai', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    line-height: 1.7;
+    overflow-x: hidden;
+    position: relative;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Chakra Petch', sans-serif;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+}
+
+h1 {
+    font-size: clamp(3rem, 8vw, 7.5rem);
+    text-transform: uppercase;
+}
+
+.mono-text {
+    font-family: 'IBM Plex Mono', monospace;
+}
+
+.specimen-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    background-color: var(--text-main);
+    color: var(--gr-paper);
+    padding: 4px 8px;
+    display: inline-block;
+    margin-bottom: 16px;
+    letter-spacing: 1px;
+}
+
+.container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 5%;
+}
+
+/* Specimen Grid Background */
+.specimen-grid {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    background-size: 48px 48px;
+    background-image: 
+        linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+    pointer-events: none;
+}
+
+/* Header */
+header {
+    padding: 24px 0;
+    border-bottom: 1px solid var(--grid-line);
+    background: rgba(242, 237, 227, 0.9);
+    backdrop-filter: blur(8px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+nav a {
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--text-main);
+    text-decoration: none;
+    margin-left: 32px;
+    font-size: 14px;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: var(--gr-ember);
+}
+
+/* Hero Section */
+#hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    padding: 96px 5%;
+    align-items: center;
+    min-height: 80vh;
+}
+
+.hero-content p {
+    font-size: 18px;
+    color: var(--text-muted);
+    margin-bottom: 48px;
+    max-width: 600px;
+}
+
+.gradient-text {
+    background: var(--time-warp);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.btn {
+    font-family: 'IBM Plex Mono', monospace;
+    display: inline-block;
+    padding: 16px 32px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+}
+
+.cta-btn {
+    background-color: var(--gr-lime);
+    color: var(--gr-void);
+    border: none;
+}
+
+.cta-btn:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 4px 4px 0 var(--gr-ember);
+}
+
+/* Radar Animation (Time Rings) */
+.radar-container {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    margin: 0 auto;
+}
+
+.radar-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border: 1px solid var(--gr-cyan);
+    opacity: 0.2;
+}
+
+.radar-ring:nth-child(1) { width: 100px; height: 100px; }
+.radar-ring:nth-child(2) { width: 250px; height: 250px; }
+.radar-ring:nth-child(3) { width: 400px; height: 400px; border-style: dashed; }
+
+.radar-scanner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200px;
+    height: 200px;
+    background: conic-gradient(from 0deg, transparent 70%, rgba(46, 230, 255, 0.3) 100%);
+    border-radius: 100% 0 0 0;
+    transform-origin: bottom right;
+    animation: scan 4s linear infinite;
+    transform: translate(-100%, -100%);
+}
+
+@keyframes scan {
+    0% { transform: translate(-100%, -100%) rotate(0deg); }
+    100% { transform: translate(-100%, -100%) rotate(360deg); }
+}
+
+/* Sections */
+section {
+    padding: 96px 5%;
+}
+
+.section-header {
+    margin-bottom: 64px;
+}
+
+/* Mission Grid */
+.mission-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 24px;
+}
+
+.mission-card {
+    background: var(--card-bg);
+    padding: 32px;
+    border-top: 4px solid var(--accent, var(--gr-cyan));
+    box-shadow: 0 8px 32px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+
+.mission-card:hover {
+    transform: translateY(-8px);
+}
+
+.card-icon {
+    font-size: 32px;
+    margin-bottom: 16px;
+}
+
+/* Features (Cut corners) */
+.features-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+}
+
+.cut-corner {
+    background: var(--card-bg);
+    padding: 48px;
+    position: relative;
+    /* 45deg cut on top-left and bottom-right */
+    clip-path: polygon(
+        12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px
+    );
+    box-shadow: 0 12px 48px rgba(0,0,0,0.05);
+}
+
+.cut-corner::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: var(--gr-cyan);
+    z-index: -1;
+    clip-path: inherit;
+    transform: scale(1.02);
+}
+
+/* Footer */
+footer {
+    padding: 48px 5%;
+    text-align: center;
+    border-top: 1px solid var(--grid-line);
+    margin-top: 96px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    #hero {
+        grid-template-columns: 1fr;
+    }
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+    .radar-container {
+        width: 300px;
+        height: 300px;
+    }
+    .radar-ring:nth-child(3) { width: 300px; height: 300px; }
+    .radar-scanner { width: 150px; height: 150px; }
+}
